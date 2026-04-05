@@ -10,6 +10,7 @@ import { createSTTPanel } from './tools/stt/stt-panel.js';
 import { createSRTPanel } from './tools/srt/srt-panel.js';
 import { createChatPanel } from './tools/chat/chat-panel.js';
 import { createSettingsPanel } from './settings/settings-panel.js';
+import { initLogger, showLogModal } from './shared/logger.js';
 
 const TOOLS = [
   {
@@ -58,6 +59,9 @@ function init() {
   const app = document.getElementById('app');
   app.innerHTML = '';
 
+  // Initialize global logger early
+  initLogger();
+
   // --- Navigation ---
   const header = document.createElement('header');
   header.innerHTML = `
@@ -74,6 +78,9 @@ function init() {
         `).join('')}
       </div>
       <div class="nav-right">
+        <button class="btn-icon" id="nav-logs" title="System Logs">
+          ${getIcon('terminal')}
+        </button>
         <button class="btn-icon" id="nav-settings" title="Settings">
           ${getIcon('settings')}
         </button>
@@ -117,6 +124,11 @@ function init() {
   document.getElementById('nav-links').addEventListener('click', (e) => {
     const btn = e.target.closest('[data-tool]');
     if (btn) switchTool(btn.dataset.tool);
+  });
+
+  // Logs
+  document.getElementById('nav-logs').addEventListener('click', () => {
+    showLogModal();
   });
 
   // Settings

@@ -1087,3 +1087,84 @@ a:focus-visible {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* --- Log Viewer Modal --- */
+.log-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.log-modal-window {
+  background: #111;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+  border: 1px solid #333;
+}
+
+.log-modal-header {
+  padding: 12px 16px;
+  background: #000;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-modal-title {
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.log-modal-header .btn-secondary {
+  color: #fff;
+  border-color: #333;
+}
+.log-modal-header .btn-secondary:hover {
+  background: #222;
+}
+.log-modal-header .btn-icon {
+  color: #fff;
+}
+
+.log-modal-content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #aaa;
+}
+
+.log-line {
+  margin-bottom: 4px;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.log-time {
+  color: #666;
+  user-select: none;
+}
+
+.log-warn { color: #f5a623; }
+.log-error { color: #ff3b30; }
+.log-info { color: #007aff; }
